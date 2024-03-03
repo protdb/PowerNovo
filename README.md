@@ -49,3 +49,4 @@ If necessary, you can download them manually and put them in the working folder.
 ### Note: ###
 To run the ALPS peptide assembler, Java must be installed on the machine. If Java is not installed, try install.
     sudo apt install default-jre
+
