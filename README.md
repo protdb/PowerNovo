@@ -16,14 +16,22 @@ Using the tool, is as simple and convenient as possible:
                         the list of *.mgf files
 
 **Options:**
-    -w Path to the project's working folder. The model weights and ALPS peptide assembler will be automatically loaded into this folder. If the path is not specified, the working folder will be automatically created in the current folder with the name pwn_work.
+
+    -w Path to the project's working folder. The model weights and ALPS peptide assembler will be automatically loaded into this folder. If the path is not specified, the working folder will be automatically created in the current folder       with the name pwn_work.
+    
     -o Path to the folder into which the results of data processing will be downloaded. If not specified, the data will be loaded into the pwn_output folder, which will be created in the folder where the input files are located.
     -batch_size Number of simultaneously processed spectra. Default is 16. For GPUs with memory > 2048K, the size can be increased to 32, 64, etc.
+    
     -alps Use ALPS peptide assembler during post-processing (default = True)
+    
     -num_contigs Number of contigs that will be assembled by the ALPS peptide assembler (default=20)
+
     -contigs_kmers  kmer lengths that will be used by ALPS when assembling contigs (default [7, 8, 10])
+    
     -infer Use an algorithm for matching pepts (contigs) with proteins (default=Тrue) 
+    
     -fasta Path to the protein FASTA file that will be used to match peptides (contigs) and proteins. If not specified, FASTA Homo sapiens (9606) will be used.
+    
     -use-bert Use the Peptide Bert model to evaluate hypotheses (default True). This option can be disabled if there is insufficient GPU memory with some loss of accuracy in the results.
 
 **You can also run the pipeline directly from code**
