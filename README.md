@@ -24,7 +24,7 @@ Using the tool, is as simple and convenient as possible:
     
     -alps Use ALPS peptide assembler during post-processing (default = True)
     
-`    -num_contigs Number of contigs that will be assembled by the ALPS peptide assembler (default=20)
+    -num_contigs Number of contigs that will be assembled by the ALPS peptide assembler (default=20)
 
     -contigs_kmers  kmer lengths that will be used by ALPS when assembling contigs (default [7, 8, 10])
     
