@@ -1,0 +1,63 @@
+
+environments:
+- working_folder: /home/dp/Data/powernovo
+- figshare_id: 44806387
+- temporary_folder: temp_
+- models_folder: models
+- database_folder: database,
+- preprocessing_folder: index
+- output_folder_name: 'pwn_output'
+- database_folder: database
+- assembler_folder: assembler
+- annotated: False
+- use_bert_inference: True
+- inference_batch_size: 5
+- device: auto
+- n_workers: 0
+
+
+models:
+- spectrum_transformer:
+  - trained_model: pwn_spectrum.pt
+  - dmodel: 512
+  - n_layers: 10
+  - max_charge: 10
+  - n_tokens: 32
+
+- peptide_bert:
+  - trained_model: pwn_bert.pt
+  - vocab_file: tokenizer_vocab.txt
+  - classifier_input_dim: 8192
+
+- hypotheses:
+  - beam_size: 5
+  - precursor_mass_tol: 10.0
+  - min_peptide_len: 7
+  - max_peptide_len: 64
+  - max_steps: 0
+  - lambda_: 100
+    cx_prob: 0.9
+    n_gen: 30
+
+assignment:
+- peptides:
+  - use_alps: True
+  - running_file: ALPS.jar
+  - n_contigs: 10
+  - kmers: [7, 8, 10]
+
+- proteins:
+    - minIdentity: 0.75
+    - inference: True
+    - map_modifications: True
+    - fasta_path: /home/dp/Data/powernovo/database/UP000005640_9606.fasta
+
+
+spectrum_model_train:
+  - train_dataset_path:
+  - val_dataset_path:
+  - checkpoint_folder: 'checkpoints'
+  - max_epoch: 256
+  - learning_rate: 5e-4
+  - max_workers: 4
+  - batch_size: 256

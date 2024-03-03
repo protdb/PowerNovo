@@ -10,10 +10,10 @@ from pytorch_lightning.loggers import CSVLogger
 from torch import nn
 from torchmetrics import Accuracy
 
-from inference_runner.pipeline_config.config import PWNConfig
-from inference_runner.depthcharge_base.data.spectrum_datasets import AnnotatedSpectrumDataset
-from inference_runner.depthcharge_base.tokenizers.peptides import PeptideTokenizer
-from inference_runner.models.spectrum.spectrum_inference import SpectrumTransformer
+from powernovo.pipeline_config.config import PWNConfig
+from powernovo.depthcharge_base.data.spectrum_datasets import AnnotatedSpectrumDataset
+from powernovo.depthcharge_base.tokenizers.peptides import PeptideTokenizer
+from powernovo.models.spectrum.spectrum_inference import SpectrumTransformer
 
 
 class TrainingWrapper(pl.LightningModule):

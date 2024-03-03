@@ -4,9 +4,9 @@ from collections import OrderedDict
 import torch
 from transformers import BertConfig
 
-from inference_runner.pipeline_config.config import PWNConfig
-from inference_runner.models.peptide_bert.peptide_bert import PeptideBert
-from inference_runner.models.spectrum.spectrum_inference import SpectrumTransformer
+from powernovo.pipeline_config.config import PWNConfig
+from powernovo.models.peptide_bert.peptide_bert import PeptideBert
+from powernovo.models.spectrum.spectrum_inference import SpectrumTransformer
 
 
 def convert_transformer_checkpoint_():
