@@ -84,10 +84,11 @@ def check_and_setup_environment():
         try:
             retrieve_data_from_figshare()
         except Exception as e:
+            logger.error(e)
             sys.exit(1)
 
 
-def process_folder(input_folder: str, output_folder: str):
+def process_folder(input_folder: str, output_folder: str, callback_fn: callable = None):
     files = glob.glob(f'{input_folder}/*.mgf')
 
     if not files:
@@ -99,15 +100,15 @@ def process_folder(input_folder: str, output_folder: str):
         file_size = os.path.getsize(file)
         logger.info(f"FILE: {os.path.basename(file)} ({round(file_size / (pow(1024, 2)), 2)} MB)")
 
-    inference = PWNInference()
+    inference = PWNInference(callback_fn=callback_fn)
     inference.load_models()
 
     for file in files:
         inference.run(input_file=file, output_folder=output_folder)
 
 
-def process_file(input_file: str, output_folder: str):
-    inference = PWNInference()
+def process_file(input_file: str, output_folder: str, callback_fn: callable = None):
+    inference = PWNInference(callback_fn=callback_fn)
     inference.load_models()
     inference.run(input_file=input_file, output_folder=output_folder)
 
@@ -121,7 +122,9 @@ def run_inference(inputs: str,
                   fasta_path: str = '',
                   use_bert: bool = True,
                   num_contigs: int = 20,
-                  contigs_kmers: list = [7, 8, 10]
+                  contigs_kmers: list = [7, 8, 10],
+                  annotated_spectrum: bool = False,
+                  callback_fn: callable = None  # The function to which the prediction results will be returned
                   ):
     """Setup config"""
     try:
@@ -132,6 +135,7 @@ def run_inference(inputs: str,
         config.peptides.n_contigs = num_contigs
         config.peptides.kmers = contigs_kmers
         config.proteins.inference = protein_inference
+        config.annotated = annotated_spectrum
 
         if not os.path.exists(fasta_path):
             fasta_path = config.database_folder / 'UP000005640_9606.fasta'
@@ -144,9 +148,9 @@ def run_inference(inputs: str,
     check_and_setup_environment()
 
     if os.path.isfile(inputs):
-        process_file(input_file=inputs, output_folder=output_folder)
+        process_file(input_file=inputs, output_folder=output_folder, callback_fn=callback_fn)
     elif os.path.isdir(inputs):
-        process_folder(input_folder=inputs, output_folder=output_folder)
+        process_folder(input_folder=inputs, output_folder=output_folder, callback_fn=callback_fn)
     else:
         logger.error('Invalid inputs. Either an mgf file or a directory containing such files must be specified')
 

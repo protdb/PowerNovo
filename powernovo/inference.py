@@ -32,6 +32,11 @@ class PWNInference(object):
         self.tokenizer = PeptideTokenizer.from_massivekb(reverse=False)
         self.config = PWNConfig()
 
+        try:
+            self.callback_fn = kwargs['callback_fn']
+        except KeyError:
+            self.callback_fn = None
+
         if self.config.device == 'auto':
             self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         elif self.config.device in ['cpu', 'cuda']:
@@ -192,18 +197,28 @@ class PWNInference(object):
                 continue
             inference_records = self.inference(batch, scan_id=scan_ids)
 
+            callback_batch = {}
+
             for i in range(len(inference_records)):
                 predicted_ = inference_records[i]
                 if predicted_:
                     try:
-                        peptide_aggregator.add_record(
-                            scan_id=scan_ids[i],
-                            sequence=predicted_.sequence,
-                            mass_error=predicted_.mass_error,
-                            score=predicted_.score,
-                            aa_scores=predicted_.aa_scores)
+                        predicted_record = peptide_aggregator.add_record(scan_id=scan_ids[i],
+                                                                         sequence=predicted_.sequence,
+                                                                         mass_error=predicted_.mass_error,
+                                                                         score=predicted_.score,
+                                                                         aa_scores=predicted_.aa_scores)
+                        if self.callback_fn is not None and predicted_record:
+                            annotation = self.tokenizer.detokenize(batch[2]) if self.config.annotated else {}
+                            callback_batch.update({scan_ids[i]: {'predicted': predicted_record,
+                                                                 'annotation': annotation
+                                                                 }})
+
                     except (AttributeError, Exception):
                         continue
+
+            if self.callback_fn is not None and callback_batch:
+                self.callback_fn(callback_batch)
 
         peptide_aggregator.solve()
 

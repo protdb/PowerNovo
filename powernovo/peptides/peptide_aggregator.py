@@ -54,9 +54,9 @@ class PeptideAggregator(object):
                    mass_error: float,
                    score: float,
                    aa_scores: list[float]
-                   ):
+                   ) -> dict:
         if not sequence:
-            return
+            return {}
         sequence, mod_dict = from_proforma(sequence)
         canonical_seq = to_canonical(sequence)
         mod_str = ''
@@ -69,20 +69,24 @@ class PeptideAggregator(object):
                                                              / len(sequence), 2)), dtype=np.float32)
 
         if len(aa_scores) != len(canonical_seq):
-            return
+            return {}
         aa_scores = ' '.join(map(str, aa_scores))
         score = min(1.0, round(score / len(sequence), 2))
 
+        record = {'sequence': sequence,
+                  'canonical_seq': canonical_seq,
+                  'mass_error': mass_error,
+                  'score': score,
+                  'mod_dict': mod_dict,
+                  'mod_str': mod_str,
+                  'aa_scores': aa_scores
+                  }
+
         self.peptides.update({
-            scan_id: {'sequence': sequence,
-                      'canonical_seq': canonical_seq,
-                      'mass_error': mass_error,
-                      'score': score,
-                      'mod_dict': mod_dict,
-                      'mod_str': mod_str,
-                      'aa_scores': aa_scores
-                      }
+            scan_id: record
         })
+
+        return record
 
     def solve(self):
         scored_filepath = self.assembly()
