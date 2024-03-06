@@ -195,7 +195,7 @@ class PWNInference(object):
 
             if torch.sum(invalid_charges_mask, dim=-1) > 0:
                 continue
-            inference_records = self.inference(batch, scan_id=scan_ids)
+            inference_records = self.inference(batch)
 
             callback_batch = {}
             annotations = self.tokenizer.detokenize(batch[2]) if self.config.annotated else []
@@ -223,7 +223,7 @@ class PWNInference(object):
 
         peptide_aggregator.solve()
 
-    def inference(self, batch: List[torch.Tensor], scan_id: list[str] | None) -> object:
+    def inference(self, batch: List[torch.Tensor]) -> object:
         best_hypothesis = self.beam_search.decode(
             spectra=batch[0].float(),
             precursors=batch[1],
