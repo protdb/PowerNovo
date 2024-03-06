@@ -198,6 +198,7 @@ class PWNInference(object):
             inference_records = self.inference(batch, scan_id=scan_ids)
 
             callback_batch = {}
+            annotations = self.tokenizer.detokenize(batch[2]) if self.config.annotated else []
 
             for i in range(len(inference_records)):
                 predicted_ = inference_records[i]
@@ -209,9 +210,9 @@ class PWNInference(object):
                                                                          score=predicted_.score,
                                                                          aa_scores=predicted_.aa_scores)
                         if self.callback_fn is not None and predicted_record:
-                            annotation = self.tokenizer.detokenize(batch[2]) if self.config.annotated else {}
+
                             callback_batch.update({scan_ids[i]: {'predicted': predicted_record,
-                                                                 'annotation': annotation[i]
+                                                                 'annotation': annotations[i] if annotations else ''
                                                                  }})
 
                     except (AttributeError, Exception):

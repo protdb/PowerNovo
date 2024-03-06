@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='powernovo',
-    version='1.0.5',
+    version='1.0.8',
     packages=['powernovo', 'powernovo.utils', 'powernovo.models',
               'powernovo.models.spectrum', 'powernovo.models.peptide_bert', 'powernovo.peptides',
               'powernovo.proteins', 'powernovo.beam_search', 'powernovo.pipeline_config',
@@ -14,7 +14,7 @@ setup(
     author='Denis Petrovskiy',
     author_email='petro2017@mail.ru',
     description='PowerNovo: A New Efficient Tool for De Novo Peptide Sequencing',
-    install_requires=['torch~=2.0.1',
+    install_requires=['torch>=2.0.1',
                       'numpy~=1.26.3',
                       'transformers~=4.36.2',
                       'requests~=2.31.0',
@@ -34,9 +34,5 @@ setup(
                       'spectrum_utils',
                       'biopython',
                       'lxml',
-                      'sortedcontainers~=2.4.0'],
-    data_files=[('pipeline_config', ['config.yaml'])],
-    readme="README.md",
-
-
+                      'sortedcontainers~=2.4.0']
 )
