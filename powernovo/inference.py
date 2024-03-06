@@ -211,7 +211,7 @@ class PWNInference(object):
                         if self.callback_fn is not None and predicted_record:
                             annotation = self.tokenizer.detokenize(batch[2]) if self.config.annotated else {}
                             callback_batch.update({scan_ids[i]: {'predicted': predicted_record,
-                                                                 'annotation': annotation
+                                                                 'annotation': annotation[i]
                                                                  }})
 
                     except (AttributeError, Exception):
