@@ -19,7 +19,7 @@ Using the tool, is as simple and convenient as possible:
 
     -w Path to the project's working folder. The model weights and ALPS peptide assembler will be automatically loaded into this folder. If the path is not specified, the working folder will be automatically created in the current folder       with the name pwn_work.
     
-    -o Path to the folder into which the results of data processing will be downloaded. If not specified, the data will be loaded into the pwn_output folder, which will be created in the folder where the input files are located.
+    -o Path to the folder into which the results of data processing will be extracted. If not specified, the data will be loaded into the pwn_output folder, which will be created in the folder where the input files are located.
     -batch_size Number of simultaneously processed spectra. Default is 16. For GPUs with memory > 2048K, the size can be increased to 32, 64, etc.
     
     -alps Use ALPS peptide assembler during post-processing (default = True)
@@ -37,19 +37,24 @@ Using the tool, is as simple and convenient as possible:
 **You can also run the pipeline directly from code**
 
     from powernovo.run import run_inference
+    
     if __name__ == '__main__':
         run_inference(
-            inputs=<Path to the mgf file or path to the folder>,
-            working_folder='',
-            output_folder='',
-            batch_size=32,
-            use_assembler=True,  # Use ALPS peptide assembler
-            num_contigs=20,
-            contigs_kmers=[7, 8, 10],
-            protein_inference=True,
-            fasta_path=<Path to your fasta file>,
-            use_bert=True
+                inputs: str, # input file or folder
+                working_folder: str = 'pwn_work', # Path to the project's working folder (see above: -w options).
+                output_folder: str = '', # Output folder (see above: -o options)
+                batch_size: int = 16,
+                use_assembler: bool = True, # (see above: -alps options)
+                protein_inference: bool = True, # (see above: -infer options)
+                fasta_path: str = '',
+                use_bert: bool = True,
+                num_contigs: int = 20,
+                contigs_kmers: list = [7, 8, 10], # 
+                annotated_spectrum: bool = False, # If mfg is annotated, then the prediction results passed 
+                                                  #  to the callback function will contain the annotation from mgf
+                callback_fn: callable = None  # The function to which the prediction results will be returned
         )
+        
         
 When launched, the program automatically downloads model weights and ALPS peptide assembler. Download data is located on the Figshare resource 10.6084/m9.figshare.25329586  [Models data](https://figshare.com/s/49d21966f8230445f2a4) 
 If necessary, you can download them manually and put them in the working folder.
