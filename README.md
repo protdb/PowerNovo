@@ -34,7 +34,7 @@ Using the tool, is as simple and convenient as possible:
     
     -use-bert Use the Peptide Bert model to evaluate hypotheses (default True). This option can be disabled if there is insufficient GPU memory with some loss of accuracy in the results.
 
-**You can also run the pipeline directly from code**
+**You can also run the pipeline directly from code** See example in [Colab notebook](/examples/colab_notebook)
 
     from powernovo.run import run_inference
     
