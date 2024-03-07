@@ -13,10 +13,10 @@ class FeedForward(torch.nn.Module):
     in_features : int
         The input dimensionality.
     out_features : int
-        The output dimensionality.
+        The pipeline_output dimensionality.
     layers : int or tuple of int.
         If an int, layer sizes are linearly interpolated between the input and
-        output dimensions using this number of layers. Otherwise, each element
+        pipeline_output dimensions using this number of layers. Otherwise, each element
         specifies the size of a layer.
     dropout : float, optionalf
         If greater than zero, add dropout layers with the specified
@@ -72,6 +72,6 @@ class FeedForward(torch.nn.Module):
         Returns
         -------
         torch.Tensor of shape (..., out_features)
-            The output tensor.
+            The pipeline_output tensor.
         """
         return self.layers(X)
