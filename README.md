@@ -59,6 +59,10 @@ Using the tool, is as simple and convenient as possible:
 When launched, the program automatically downloads model weights and ALPS peptide assembler. Download data is located on the Figshare resource 10.6084/m9.figshare.25329586  [Models data](https://figshare.com/s/49d21966f8230445f2a4) 
 If necessary, you can download them manually and put them in the working folder.
 
+### Output: ###
+The pipeline output results are represented by the following files:
+* Table with predicted peptides and their confidence score
+
 ### Note: ###
 To run the ALPS peptide assembler, Java must be installed on the machine. If Java is not installed, try install.
     sudo apt install default-jre
