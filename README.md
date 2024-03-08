@@ -34,7 +34,7 @@ Using the tool, is as simple and convenient as possible:
     
     -use-bert Use the Peptide Bert model to evaluate hypotheses (default True). This option can be disabled if there is insufficient GPU memory with some loss of accuracy in the results.
 
-**You can also run the pipeline directly from code**
+**You can also run the pipeline directly from code** See example in [Colab notebook](/examples/colab_notebook)
 
     from powernovo.run import run_inference
     
@@ -58,6 +58,17 @@ Using the tool, is as simple and convenient as possible:
         
 When launched, the program automatically downloads model weights and ALPS peptide assembler. Download data is located on the Figshare resource 10.6084/m9.figshare.25329586  [Models data](https://figshare.com/s/49d21966f8230445f2a4) 
 If necessary, you can download them manually and put them in the working folder.
+
+### Output: ###
+The pipeline output results are represented by the following files:
+* Table with predicted peptides and their confidence score.
+* Fasta files with assembled contigs.
+* Table of mapping peptides into proteins and protein groups.
+* Table containing solved proteins and their peptide sequences.
+
+Examples of output results can be viewed at [Output results](/examples/pipeline_output)
+
+
 
 ### Note: ###
 To run the ALPS peptide assembler, Java must be installed on the machine. If Java is not installed, try install.
