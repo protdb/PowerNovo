@@ -72,6 +72,7 @@ Examples of output results can be viewed at [Output results](/examples/pipeline_
 
 ### Note: ###
 To run the ALPS peptide assembler, Java must be installed on the machine. If Java is not installed, try install.
+
     sudo apt install default-jre
 
 ## Pipeline ##
