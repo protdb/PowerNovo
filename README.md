@@ -61,7 +61,14 @@ If necessary, you can download them manually and put them in the working folder.
 
 ### Output: ###
 The pipeline output results are represented by the following files:
-* Table with predicted peptides and their confidence score
+* Table with predicted peptides and their confidence score.
+* Fasta files with assembled contigs.
+* Table of mapping peptides into proteins and protein groups.
+* Table containing solved proteins and their peptide sequences.
+
+Examples of output results can be viewed at [Output results](/examples/pipeline_output)
+
+
 
 ### Note: ###
 To run the ALPS peptide assembler, Java must be installed on the machine. If Java is not installed, try install.
