@@ -1,7 +1,9 @@
 # PowerNovo: A New Efficient Tool for De Novo Peptide Sequencing #
+<img title="a title" alt="Alt text" src="/images/Logo.jpg">
 
 ## What is this? ##
 PowerNovo is a software solution that consists of a set of Transformer and BERT models for peptide sequencing. The solution includes a model for identifying patterns in tandem mass spectra, precursors, fragment ions, and a natural language processing model BERT, which performs the function of evaluating the quality of peptide sequences and helps in reconstructing noisy signals. Additionally, the solution integrates an algorithm for identifying proteins based on peptide sequences, which allows for a complete and comprehensive cycle of spectral data processing.
+
 
 ## Quick Guide ##
 ### Install PowerNovo ###
