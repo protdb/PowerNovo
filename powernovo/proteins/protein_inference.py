@@ -46,14 +46,14 @@ class ProteinInference(object):
         network.add_nodes_from(self.contigs, is_protein=0)
         network.add_nodes_from(self.proteins, is_protein=1)
 
-        for contig_, record in self.protein_map.items():
+        for _, record in self.protein_map.items():
             protein_id = record['protein_id']
             protein_name = record['protein_name']
             modifications = record['mod']
             score = record['score']
 
             network.add_edge(protein_id,
-                             contig_,
+                             record['sequence'],
                              modifications=modifications,
                              protein_name=protein_name,
                              score=score)

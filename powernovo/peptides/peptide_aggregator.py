@@ -194,7 +194,8 @@ class PeptideAggregator(object):
                 'score': score,
                 'start_idx': target_matched_start - 1,
                 'end_idx': target_matched_end - 1,
-                'mod': ''
+                'mod': '',
+                'sequence': target_match
             }})
 
     def map_peptides_mod(self):
