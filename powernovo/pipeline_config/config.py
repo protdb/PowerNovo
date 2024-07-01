@@ -10,7 +10,7 @@ CONFIG_FILE = "config.yaml"
 logger = logging.getLogger("powernovo")
 
 DEFAULT_CONFIG_PARAMS = {'environments': [{'working_folder': ''},
-                                          {'figshare_id': 46797673},
+                                          {'figshare_id': 47342644},
                                           {'temporary_folder': 'temp_'},
                                           {'models_folder': 'models'},
                                           {'database_folder': 'database'},
