@@ -1,7 +1,7 @@
 
 environments:
 - working_folder: /home/dp/Data/powernovo
-- figshare_id: 46797673
+- figshare_id: 47342644
 - temporary_folder: temp_
 - models_folder: models
 - database_folder: database,

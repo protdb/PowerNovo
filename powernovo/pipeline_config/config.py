@@ -7,6 +7,7 @@ from powernovo.utils.utils import Singleton
 
 CONFIG_FILE = "config.yaml"
 
+
 logger = logging.getLogger("powernovo")
 
 DEFAULT_CONFIG_PARAMS = {'environments': [{'working_folder': ''},

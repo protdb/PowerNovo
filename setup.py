@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='powernovo',
-    version='1.0.10',
+    version='1.0.11',
     packages=['powernovo', 'powernovo.utils', 'powernovo.models',
               'powernovo.models.spectrum', 'powernovo.models.peptide_bert', 'powernovo.peptides',
               'powernovo.proteins', 'powernovo.beam_search', 'powernovo.pipeline_config',
